@@ -1,0 +1,47 @@
+{
+    "types": ["Robot", "Room", "Wall", "Door", "Location", "Obstacle", "DomainSettings"],
+    "attribute_imports": {
+        "opentamp.core.util_classes.matrix": ["Vector1d", "Vector2d"]
+    },
+    "predicates_import_path": "opentamp.core.util_classes.floorplan_predicates",
+    "type_attrs": {
+        "Wall": {
+            "endpoint1": "Vector2d",
+            "endpoint2": "Vector2d",
+            "value": "Vector2d"
+        },
+        "Door": {
+            "endpoint1": "Vector2d",
+            "endpoint2": "Vector2d",
+            "value": "Vector2d"
+        },
+        "Robot": {
+            "pose": "Vector2d",
+            "theta": "Vector1d"
+        },
+        "Room": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d" 
+        },
+        "Location": {
+            "value": "Vector2d"
+        },
+        "Obstacle": {
+            "value": "Vector2d"
+        },
+        "DomainSettings": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d"
+        }
+    },
+    "predicates": {
+        "DoorConnectsLocs": ["Door", "Location", "Location"],
+        "RobotInRoom": ["Robot", "Room"],
+        "LocationInRoom": ["Location", "Room"],
+        "RobotAtLocation": ["Robot", "Location"],
+        "PathClear": ["Robot", "Obstacle", "Location", "Location"],
+        "IsMP": ["Robot"]
+    }
+}

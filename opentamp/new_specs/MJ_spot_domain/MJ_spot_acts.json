@@ -1,0 +1,131 @@
+{
+    "move_to_face": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?loc1", "Loc"]
+        ],
+        "horizon": 40,
+        "pre": [
+        ],
+        "eff": [
+            {
+                "type": "RobotFacingLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            },
+            {
+                "type": "JointsInRange",
+                "args": ["?robot"],
+                "active_timesteps": [0, 39]
+            }
+        ]
+    },
+    "move_to_loc": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?loc1", "Loc"]
+        ],
+        "horizon": 40,
+        "pre": [
+        ],
+        "eff": [
+            {
+                "type": "GripperAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            },
+            {
+                "type": "JointsInRange",
+                "args": ["?robot"],
+                "active_timesteps": [0, 39]
+            },
+            {
+                "type": "StationaryBase",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            }
+        ]
+    },
+    "grasp": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?loc1", "Loc"]
+        ],
+        "horizon": 40,
+        "pre": [
+            {
+                "type": "GripperAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            },
+            {
+                "type": "GripperClosed",
+                "args": ["?robot"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "type": "GripperAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 39]
+            },
+            {
+                "type": "JointsInRange",
+                "args": ["?robot"],
+                "active_timesteps": [0, 39]
+            }
+        ]
+    },
+    "move_to_origin": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?loc1", "Loc"]
+        ],
+        "horizon": 40,
+        "pre": [
+            {
+                "type": "GripperClosed",
+                "args": ["?robot"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "GripperAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            },
+            {
+                "type": "GripperAtOrigin",
+                "args": ["?robot"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "type": "JointsInRange",
+                "args": ["?robot"],
+                "active_timesteps": [0, 39]
+            }
+        ]
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "types": ["Robot", "Loc"],
+    "attribute_imports": {
+        "opentamp.core.util_classes.matrix": ["Vector3d", "Vector10d"]
+    },
+    "predicates_import_path": "opentamp.core.util_classes.mj_spot_predicates",
+    "type_attrs": {
+        "Robot": {
+            "pose": "Vector10d"
+        },
+        "Loc": {
+            "value": "Vector3d"
+        }
+    },
+    "predicates": {
+        "RobotAtLocation": ["Robot", "Loc"],
+        "IsMP": ["Robot"],
+        "StationaryBase": ["Robot"],
+        "GripperAtLocation": ["Robot", "Loc"],
+        "RobotFacingLocation": ["Robot", "Loc"],
+        "JointsInRange": ["Robot"],
+        "GripperClosed": ["Robot"],
+        "GripperAtOrigin": ["Robot"]
+    }
+}

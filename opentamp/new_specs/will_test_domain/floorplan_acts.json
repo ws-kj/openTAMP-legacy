@@ -1,0 +1,50 @@
+{
+  "move_to_loc_same_room": {
+    "params": [
+      ["?robot", "Robot"],
+      ["?room", "Room"],
+      ["?target", "Target"]
+    ],
+    "horizon": 20,
+    "pre": [
+      {
+        "type": "RobotInRoom",
+        "args": ["?robot", "?room"],
+        "active_timesteps": [0, 0]
+      }
+    ],
+    "eff": [
+      {
+        "type": "IsMP",
+        "args": ["?robot"],
+        "active_timesteps": [0, 18]
+      },
+      {
+        "type": "RobotAtTarget",
+        "args": ["?robot", "?target"],
+        "active_timesteps": [19, 19]
+      }
+    ]
+  },
+  "sleep": {
+    "params": [
+      ["?robot", "Robot"],
+      ["?target", "Target"]
+    ],
+    "horizon": 20,
+    "pre": [
+      {
+        "type": "RobotAtTarget",
+        "args": ["?robot", "?target"],
+        "active_timesteps": [19, 19]
+      }
+    ],
+    "eff": [
+      {
+        "type": "TaskComplete",
+        "args": ["?robot", "?target"],
+        "active_timesteps": [19, 19]
+      }
+    ]
+  }
+}

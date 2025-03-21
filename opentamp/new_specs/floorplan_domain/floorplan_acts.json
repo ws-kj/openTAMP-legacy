@@ -1,0 +1,152 @@
+{
+    "move_to_loc_same_room": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?room", "Room"],
+            ["?loc1", "Location"],
+            ["?loc2", "Location"]
+        ],
+        "horizon": 40,
+        "pre": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc1", "?room"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc2", "?room"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "PathClear",
+                    "args": ["?robot", "?w", "?loc1", "?loc2"],
+                    "active_timesteps": [0, 39]
+                }
+        }
+        ],
+        "eff": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room"],
+                "active_timesteps": [0, 39]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc2"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 38]
+            },
+            {
+                "type": "~RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [39, 39]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "PathClear",
+                    "args": ["?robot", "?w", "?loc1", "?loc2"],
+                    "active_timesteps": [0, 39]
+                }
+            }
+        ]
+    },
+    "move_through_door": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?door", "Door"],
+            ["?room1", "Room"],
+            ["?room2", "Room"],
+            ["?loc1", "Location"],
+            ["?loc2", "Location"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "DoorConnectsLocs",
+                "args": ["?door", "?loc1", "?loc2"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc2", "?room2"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "PathClear",
+                    "args": ["?robot", "?w", "?loc1", "?loc2"],
+                    "active_timesteps": [0, 19]
+                }
+            }
+        ],
+        "eff": [
+            {
+                "type": "~RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room2"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "~RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc2"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 19]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "PathClear",
+                    "args": ["?robot", "?w", "?loc1", "?loc2"],
+                    "active_timesteps": [0, 19]
+                }
+            }
+        ]
+    }
+}

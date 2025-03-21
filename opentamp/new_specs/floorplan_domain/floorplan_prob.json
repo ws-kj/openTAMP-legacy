@@ -1,0 +1,14 @@
+{
+    "init_objs": [
+        {
+            "name": "rob",
+            "type": "Robot",
+            "pose": [2.0, 1.0],
+            "theta": [0.0]
+        }
+    ],
+    "init_preds": [
+    ],
+    "goals": [
+    ]
+}

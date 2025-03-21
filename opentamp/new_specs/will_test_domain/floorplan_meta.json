@@ -1,0 +1,40 @@
+{
+    "types": ["Robot", "Room", "Wall", "Location", "Target", "DomainSettings"],
+    "attribute_imports": {
+        "opentamp.core.util_classes.matrix": ["Vector1d", "Vector2d"]
+    },
+    "predicates_import_path": "opentamp.core.util_classes.will_floorplan_predicates",
+    "type_attrs": {
+        "Wall": {
+            "endpoint1": "Vector2d",
+            "endpoint2": "Vector2d",
+            "value": "Vector2d"
+        },
+        "Robot": {
+            "pose": "Vector2d",
+            "theta": "Vector1d"
+        },
+        "Room": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d" 
+        },
+        "Location": {
+            "value": "Vector2d"
+        },
+        "Target": {
+            "value": "Vector2d"
+        },
+        "DomainSettings": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d"
+        }
+    },
+    "predicates": {
+        "RobotInRoom": ["Robot", "Room"],
+        "TaskComplete": ["Robot", "Target"],
+        "RobotAtTarget": ["Robot", "Target"],
+        "IsMP": ["Robot"]
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "types": ["Robot", "Room", "Wall", "Door", "Location", "Obstacle", "DomainSettings", "Target", "Vantage"],
+    "attribute_imports": {
+        "opentamp.core.util_classes.matrix": ["Vector1d", "Vector2d"],
+        "opentamp.core.util_classes.beliefs": ["UniformPrior"]
+    },
+    "predicates_import_path": "opentamp.core.util_classes.floorplan_predicates",
+    "type_attrs": {
+        "Wall": {
+            "endpoint1": "Vector2d",
+            "endpoint2": "Vector2d",
+            "value": "Vector2d"
+        },
+        "Door": {
+            "endpoint1": "Vector2d",
+            "endpoint2": "Vector2d",
+            "value": "Vector2d"
+        },
+        "Robot": {
+            "pose": "Vector2d",
+            "theta": "Vector1d"
+        },
+        "Room": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d" 
+        },
+        "Location": {
+            "value": "Vector2d"
+        },
+        "Vantage": {
+            "value": "Vector2d"
+        },
+        "Target": {
+            "value": "Vector2d",
+            "belief": "UniformPrior"
+        },
+        "Obstacle": {
+            "value": "Vector2d",
+            "belief": "UniformPrior"
+        },
+        "DomainSettings": {
+            "value": "Vector2d",
+            "low_bound": "Vector2d",
+            "high_bound": "Vector2d"
+        }
+    },
+    "predicates": {
+        "DoorConnectsLocs": ["Door", "Location", "Location"],
+        "RobotInRoom": ["Robot", "Room"],
+        "LocationInRoom": ["Location", "Room"],
+        "TargetInRoom": ["Target", "Room"],
+        "RobotAtLocation": ["Robot", "Location"],
+        "RobotLookingDistance": ["Robot", "Target"],
+        "RobotAtTarget": ["Robot", "Target"],
+        "RobotNearTarget": ["Robot", "Target"],
+        "RobotNearVantage": ["Robot", "Vantage"],
+        "CertainPosition": ["Target"],
+        "BAvoidObs": ["Robot", "Obstacle"],
+        "IsMP": ["Robot"],
+        "PointingAtTargetDotProd": ["Robot", "Target"],
+        "IsStationary": ["Robot"],
+        "StationaryPoint": ["Robot"],
+        "StationaryBase": ["Robot"],
+        "IsCentral": ["Robot"],
+        "TaskComplete": ["Robot"],
+        "MovedToLoc": ["Robot"],
+        "FacedLoc": ["Robot"]
+    }
+}

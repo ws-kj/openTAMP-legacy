@@ -1,0 +1,359 @@
+{
+    "move_near_loc_and_observe": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?targ1", "Target"],
+            ["?room1", "Room"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "TargetInRoom",
+                "args": ["?targ1", "?room1"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 19]
+            },
+            {
+                "type": "TargetInRoom",
+                "args": ["?targ1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "StationaryBase",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "PointingAtTargetDotProd",
+                "args": ["?robot", "?targ1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "BAvoidObs",
+                    "args": ["?robot", "?w"],
+                    "active_timesteps": [0, 19]
+                }
+            },
+            {
+                "type": "FacedLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 18]
+            }
+        ]
+    },
+    "view_vantage": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?targ1", "Target"],
+            ["?room1", "Room"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "TargetInRoom",
+                "args": ["?targ1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "MovedToLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 18]
+            }
+        ],
+        "eff": [
+            {
+                "type": "CertainPosition",
+                "args": ["?targ1"],
+                "active_timesteps": [19, 18]
+            },
+            {
+                "type": "IsStationary",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "~FacedLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 18]
+            },
+            {
+                "type": "~MovedToLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 18]
+            }
+        ],
+        "non_deterministic": true
+    },
+    "zzzzz": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?targ1", "Target"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "RobotAtTarget",
+                "args": ["?robot", "?targ1"],
+                "active_timesteps": [19, 19]
+            }
+        ],
+        "eff": [
+            {
+                "type": "TaskComplete",
+                "args": ["?robot"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsStationary",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            }
+        ]
+    },
+    "approach_vantage": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?targ1", "Target"],
+            ["?room1", "Room"],
+            ["?v1", "Vantage"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "TargetInRoom",
+                "args": ["?targ1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "FacedLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 19]
+            }
+        ],
+        "eff": [
+            {
+                "type": "RobotNearTarget",
+                "args": ["?robot", "?targ1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "MovedToLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "StationaryPoint",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 19]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "BAvoidObs",
+                    "args": ["?robot", "?w"],
+                    "active_timesteps": [0, 19]
+                }
+            }
+        ]
+    },
+    "approach_targ": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?targ1", "Target"],
+            ["?room1", "Room"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "CertainPosition",
+                "args": ["?targ1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "TargetInRoom",
+                "args": ["?targ1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "RobotAtTarget",
+                "args": ["?robot", "?targ1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "~MovedToLoc",
+                "args": ["?robot"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "StationaryPoint",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 19]
+            },
+            {
+                "forall": ["?w", "Obstacle"],
+                "pred": {
+                    "type": "BAvoidObs",
+                    "args": ["?robot", "?w"],
+                    "active_timesteps": [0, 19]
+                }
+            }
+        ]
+    },
+    "move_to_loc_same_room": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?room", "Room"],
+            ["?loc2", "Location"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc2", "?room"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room"],
+                "active_timesteps": [0, 19]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc2"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 18]
+            }
+        ]
+    },
+    "move_through_door": {
+        "params": [
+            ["?robot", "Robot"],
+            ["?door", "Door"],
+            ["?room1", "Room"],
+            ["?room2", "Room"],
+            ["?loc1", "Location"],
+            ["?loc2", "Location"]
+        ],
+        "horizon": 20,
+        "pre": [
+            {
+                "type": "DoorConnectsLocs",
+                "args": ["?door", "?loc1", "?loc2"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc1", "?room1"],
+                "active_timesteps": [0, 0]
+            },
+            {
+                "type": "LocationInRoom",
+                "args": ["?loc2", "?room2"],
+                "active_timesteps": [0, 0]
+            }
+        ],
+        "eff": [
+            {
+                "type": "~RobotInRoom",
+                "args": ["?robot", "?room1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "RobotInRoom",
+                "args": ["?robot", "?room2"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "~RobotAtLocation",
+                "args": ["?robot", "?loc1"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "RobotAtLocation",
+                "args": ["?robot", "?loc2"],
+                "active_timesteps": [19, 19]
+            },
+            {
+                "type": "IsMP",
+                "args": ["?robot"],
+                "active_timesteps": [0, 19]
+            }
+        ]
+    }
+}
